@@ -1,2 +1,2 @@
 # PenScan
-Pentest scan tool voo het standaardiseren van het pentest proces. 
+Pentest scan tool voor het standaardiseren van het pentest proces. 
