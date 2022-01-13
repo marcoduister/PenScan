@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PenScan.Views.Access.Startpage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="30">
+                <Image Source="Pslogo.png"  WidthRequest="200"  HeightRequest="200"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
+
+                <Button x:Name="LoginreRedirectButton" Text="Login" Clicked="LoginreRedirectButton_Clicked"   />
+                <Button x:Name="RegisterRedirectButton" Text="Register" Clicked="RegisterRedirectButton_Clicked" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

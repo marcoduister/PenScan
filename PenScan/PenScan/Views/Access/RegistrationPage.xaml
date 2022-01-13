@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PenScan.Views.Access.RegistrationPage">
+    
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label Text="Registration" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                
+                <StackLayout Padding="30">
+                    <Image Source="Pslogo.png"  WidthRequest="100"  HeightRequest="100"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
+                    <StackLayout Orientation="Vertical" Spacing="10">
+                        
+                        <StackLayout>
+                            <Label FontSize="18" Text="Email Adress *" />
+                            <Entry x:Name="Email" Text="{Binding Email}"/>
+                            <Label x:Name="EmailLabel"/>
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label FontSize="18" Text="Password *" />
+                            <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True"/>
+                            <Label x:Name="PasswordLabel"/>
+                        </StackLayout>
+
+                        <StackLayout>
+                            <Label FontSize="18" Text="Password Again *" />
+                            <Entry x:Name="Passwordconfirm" Text="{Binding Passwordconfirm}" IsPassword="True"/>
+                            <Label x:Name="PasswordconfirmLabel"/>
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <Button x:Name="RegisterButton" Command="{Binding RegisterCommand}" Text="Register"/>
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

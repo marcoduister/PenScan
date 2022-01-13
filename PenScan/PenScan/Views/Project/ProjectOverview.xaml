@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PenScan.Views.Project.ProjectOverview">
+    <ContentPage.Content>
+        <ListView x:Name="ProjectList" IsPullToRefreshEnabled="true"  HasUnevenRows="True" RowHeight="60" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Padding="5" Margin="8" BackgroundColor="Maroon" HasShadow="true" IsClippedToBounds="true" >
+                            <StackLayout Orientation="Horizontal"  HorizontalOptions="Fill" HeightRequest="60"  Margin="0,1,0,1" >
+
+                                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding .}" Font="Bold,17" HorizontalOptions="StartAndExpand" VerticalOptions="Start" />
+                                </StackLayout>
+
+                                <ImageButton Source="EditIcon.png" BackgroundColor="Transparent" />
+                                <ImageButton Source="DeleteIcon.png" BackgroundColor="Transparent" />
+
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PenScan.Views.Access.LoginPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="30">
+                <Image Source="Pslogo.png"  WidthRequest="100"  HeightRequest="100"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Padding="30" Spacing="40">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Label FontSize="18" Text="Email Adress *" />
+                    <Entry x:Name="Email" Text="{Binding Email}" />
+                    <Label FontSize="18" Text="Password *" />
+                    <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True"/>
+                    
+                    <Label x:Name="ValidateLabel"/>
+                </StackLayout>
+                <Button x:Name="LoginButton" Command="{Binding LoginCommand}"   Text="Login"  />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,5 +1,6 @@
 ﻿using PenScan.Services;
 using PenScan.Views;
+using PenScan.Views.Access;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,7 +15,8 @@ namespace PenScan
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new Startpage());
+            //MainPage = new AppShell();
         }
 
         protected override void OnStart()
