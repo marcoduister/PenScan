@@ -20,5 +20,15 @@ namespace PenScan.Views.Project
             projectList.Add("intercom");
             ProjectList.ItemsSource = projectList;
         }
+
+        private void AddProjectButton_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PushAsync(new AddProjectPage());
+        }
+
+        private void TemporaryEditButton_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PushAsync(new EditProjectPage());
+        }
     }
 }

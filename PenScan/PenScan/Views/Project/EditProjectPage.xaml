@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PenScan.Views.Project.EditProjectPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="NameLabel" Text="Naam:"/>
+            <Entry x:Name="NameEntry" Placeholder="Naam"/>
+            <Label x:Name="DescriptionLabel" Text="Beschrijving:"/>
+            <Entry x:Name="DescriptionEntry" Placeholder="Beschrijving"/>
+            <Label x:Name="CompanyLabel" Text="Bedrijf"/>
+            <Picker x:Name="CompanyPicker"/>
+            <Button x:Name="FilePickerButton" Text="Contract Uploaden" Clicked="FilePickerButton_Clicked"/>
+            <Button x:Name="EditProjectButton" Text="Project aanmaken" Clicked="EditProjectButton_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
