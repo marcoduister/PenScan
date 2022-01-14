@@ -8,13 +8,16 @@ using System.Windows.Input;
 using PenScan.Views.Project;
 using System.Collections.ObjectModel;
 using PenScan.Models;
+using System.Threading.Tasks;
 
 namespace PenScan.ViewModels
 {
     public class ProjectOverviewViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         private ObservableCollection<Project> projects;
+
         public ObservableCollection<Project> Projects
         {
             get { return projects; }
@@ -41,35 +44,33 @@ namespace PenScan.ViewModels
 
         }
 
-        public Command AddCommand
-        {
-            get {   return new Command(CreateProject);  }
-        }
-
-        public Command DeleteCommand
-        {
-            get { return new Command(DeleteProject); }
-        }
-
-        public Command EditCommand
-        {
-            get { return new Command(EditProject); }
-        }
+        public Command AddCommand => new Command(CreateProject);
+        public Command EditCommand => new Command(EditProject);
+        public Command DeleteCommand => new Command(DeleteProject);
 
         private void CreateProject()
         {
-
+            App.Current.MainPage.Navigation.PushAsync(new AddProjectPage());
         }
 
         private void EditProject()
         {
-
+            App.Current.MainPage.Navigation.PushAsync(new EditProjectPage());
         }
-
-        private void DeleteProject()
+        private async void DeleteProject()
         {
-
+            var answer = await App.Current.MainPage.DisplayAlert("Deleting a Question?", "are you sure you want to do this", "Yes", "No");
+            
+            if (answer)
+            {
+                await App.Current.MainPage.DisplayAlert("verwijderd", "uw heeft project verwijderd", "OK");
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("niet verwijder", "u heeft het project niet verwijderd", "OK");
+            }
         }
+
 
     }
 }

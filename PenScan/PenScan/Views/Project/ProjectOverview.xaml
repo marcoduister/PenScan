@@ -18,9 +18,9 @@
                                     <Label Text="{Binding ProjectName}" Font="Bold,17" HorizontalOptions="StartAndExpand" VerticalOptions="Start" />
                                 </StackLayout>
 
-                                <ImageButton Source="EditIcon.png" Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference ProjectList}}" 
+                                <ImageButton x:Name="Editbutton" Source="EditIcon.png" Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference ProjectList}}" 
                                              CommandParameter="{Binding Id}" BackgroundColor="Transparent" />
-                                <ImageButton Source="DeleteIcon.png" Command="{Binding Path.BindingContext.DeleteCommand, Source={x:Reference ProjectList}}" 
+                                <ImageButton x:Name="Deletebutton" Source="DeleteIcon.png" Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference ProjectList}}" 
                                              CommandParameter="{Binding Id}" BackgroundColor="Transparent" />
 
                             </StackLayout>
