@@ -26,7 +26,6 @@ namespace PenScan.ViewModels
                 projects = value;
             }
         }
-
         public ProjectOverviewViewModel()
         {
             Projects = new ObservableCollection<Project>() {
@@ -60,7 +59,7 @@ namespace PenScan.ViewModels
         private async void DeleteProject()
         {
             var answer = await App.Current.MainPage.DisplayAlert("Deleting a Question?", "are you sure you want to do this", "Yes", "No");
-            
+
             if (answer)
             {
                 await App.Current.MainPage.DisplayAlert("verwijderd", "uw heeft project verwijderd", "OK");
