@@ -1,21 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PenScan.Views.Project.ProjectOverview">
+             x:Class="PenScan.Views.Project.ProjectOverview"
+             x:Name="Projectview">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}" Order="Primary" Priority="0" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView x:Name="ProjectList" IsPullToRefreshEnabled="true"  HasUnevenRows="True" RowHeight="60" >
-            <ListView.ItemTemplate>
+        <ListView x:Name="ProjectList" ItemsSource="{Binding Projects}" IsPullToRefreshEnabled="true" HasUnevenRows="True" RowHeight="60" >
+            <ListView.ItemTemplate  >
                 <DataTemplate>
                     <ViewCell>
                         <Frame Padding="5" Margin="8" BackgroundColor="Maroon" HasShadow="true" IsClippedToBounds="true" >
                             <StackLayout Orientation="Horizontal"  HorizontalOptions="Fill" HeightRequest="60"  Margin="0,1,0,1" >
 
                                 <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
-                                    <Label Text="{Binding .}" Font="Bold,17" HorizontalOptions="StartAndExpand" VerticalOptions="Start" />
+                                    <Label Text="{Binding ProjectName}" Font="Bold,17" HorizontalOptions="StartAndExpand" VerticalOptions="Start" />
                                 </StackLayout>
 
-                                <ImageButton Source="EditIcon.png" BackgroundColor="Transparent" />
-                                <ImageButton Source="DeleteIcon.png" BackgroundColor="Transparent" />
+                                <ImageButton Source="EditIcon.png" Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference ProjectList}}" 
+                                             CommandParameter="{Binding Id}" BackgroundColor="Transparent" />
+                                <ImageButton Source="DeleteIcon.png" Command="{Binding Path.BindingContext.DeleteCommand, Source={x:Reference ProjectList}}" 
+                                             CommandParameter="{Binding Id}" BackgroundColor="Transparent" />
 
                             </StackLayout>
                         </Frame>

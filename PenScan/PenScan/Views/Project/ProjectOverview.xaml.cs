@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PenScan.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,10 +16,7 @@ namespace PenScan.Views.Project
         public ProjectOverview()
         {
             InitializeComponent();
-            List<string> projectList = new List<string>();
-            projectList.Add("digitalnet");
-            projectList.Add("intercom");
-            ProjectList.ItemsSource = projectList;
+            BindingContext = new ProjectOverviewViewModel();
         }
     }
 }
