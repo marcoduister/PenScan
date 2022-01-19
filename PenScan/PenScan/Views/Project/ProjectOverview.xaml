@@ -7,7 +7,7 @@
         <ToolbarItem Text="Add" Command="{Binding AddCommand}" Order="Primary" Priority="0" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView x:Name="ProjectList" ItemsSource="{Binding Projects}" IsPullToRefreshEnabled="true" HasUnevenRows="True" RowHeight="60" >
+        <ListView x:Name="ProjectList" ItemsSource="{Binding Projects}" IsPullToRefreshEnabled="true" HasUnevenRows="True" RowHeight="60" SelectedItem="{Binding SelectedProject}" >
             <ListView.ItemTemplate  >
                 <DataTemplate>
                     <ViewCell>
