@@ -1,4 +1,5 @@
 ﻿using PenScan.ViewModels;
+using PenScan.ViewModels.Projects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +14,20 @@ namespace PenScan.Views.Project
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProjectOverview : ContentPage
     {
+        ProjectOverviewViewModel viewModel;
         public ProjectOverview()
         {
             InitializeComponent();
             BindingContext = new ProjectOverviewViewModel();
+            
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            var viewModel = (ProjectOverviewViewModel)BindingContext;
+            if (viewModel.refresh.CanExecute(null))
+                viewModel.refresh.Execute(null);
         }
 
-        private void AddProjectButton_Clicked(object sender, EventArgs e)
-        {
-            App.Current.MainPage.Navigation.PushAsync(new AddProjectPage());
-        }
-
-        private void TemporaryEditButton_Clicked(object sender, EventArgs e)
-        {
-            App.Current.MainPage.Navigation.PushAsync(new EditProjectPage());
-        }
     }
 }

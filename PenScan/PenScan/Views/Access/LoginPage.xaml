@@ -18,7 +18,6 @@
                     <Entry x:Name="Email" Text="{Binding Email}" />
                     <Label FontSize="18" Text="Password *" />
                     <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True"/>
-                    
                     <Label x:Name="ValidateLabel"/>
                 </StackLayout>
                 <Button x:Name="LoginButton" Command="{Binding LoginCommand}"   Text="Login"  />

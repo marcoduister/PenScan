@@ -6,15 +6,18 @@ using System.Text;
 using Xamarin.Forms;
 using System.Windows.Input;
 using PenScan.Views.Project;
+using PenScan.Views.Access;
 
-namespace PenScan.ViewModels
+namespace PenScan.ViewModels.Access
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class RegisterViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private string email;
         private string password;
-        public LoginViewModel()
+        private string passwordconfirm;
+
+        public RegisterViewModel()
         {
 
         }
@@ -38,33 +41,35 @@ namespace PenScan.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs("Password"));
             }
         }
+        public string Passwordconfirm
+        {
+            get { return passwordconfirm; }
+            set
+            {
+                passwordconfirm = value;
+                PropertyChanged(this, new PropertyChangedEventArgs("Passwordconfirm"));
+            }
+        }
+        
 
-        public Command LoginCommand
+        public Command RegisterCommand
         {
             get
             {
-                return new Command(Login);
+                return new Command(Register);
             }
         }
 
-        private void Login()
+        private void Register()
         {
-            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password))
+            if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(Passwordconfirm))
             {
-                App.Current.MainPage.DisplayAlert("Empty Values", "Please enter Email and Password", "OK");
+                App.Current.MainPage.DisplayAlert("Empty Values", "Please check end enter values", "OK");
             }
             else
             {
-                if (Email == "corona" && Password == "qwerty")
-                {
+                App.Current.MainPage.Navigation.PushAsync(new LoginPage());
 
-                    App.Current.MainPage.Navigation.PushAsync(new ProjectOverview());
-                }
-                else
-                {
-                    App.Current.MainPage.DisplayAlert("Login Fail", "Please enter correct Email and Password", "OK");
-                }
-                    
             }
         }
     }

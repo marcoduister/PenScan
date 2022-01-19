@@ -4,14 +4,13 @@
              x:Class="PenScan.Views.Project.EditProjectPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="NameLabel" Text="Naam:"/>
-            <Entry x:Name="NameEntry" Placeholder="Naam"/>
-            <Label x:Name="DescriptionLabel" Text="Beschrijving:"/>
-            <Entry x:Name="DescriptionEntry" Placeholder="Beschrijving"/>
+            <Label x:Name="NameLabel" Text="project name"/>
+            <Entry x:Name="NameEntry" Text="{Binding ProjectName}"/>
+            <Label x:Name="DescriptionLabel" Text="Description"/>
+            <Entry x:Name="DescriptionEntry" Text="{Binding Description}" Placeholder="Beschrijving"/>
             <Label x:Name="CompanyLabel" Text="Bedrijf"/>
-            <Picker x:Name="CompanyPicker"/>
-            <Button x:Name="FilePickerButton" Text="Contract Uploaden" Clicked="FilePickerButton_Clicked"/>
-            <Button x:Name="EditProjectButton" Text="Project aanmaken" Clicked="EditProjectButton_Clicked"/>
+            <Entry x:Name="CompanyEntry" Text="{Binding CompanyName}" Placeholder="Beschrijving"/>
+            <Button x:Name="EditProjectButton" Text="Project edit" Command="{Binding EditCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

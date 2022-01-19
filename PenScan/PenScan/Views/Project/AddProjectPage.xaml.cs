@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PenScan.ViewModels.Projects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,21 +16,7 @@ namespace PenScan.Views.Project
         public AddProjectPage()
         {
             InitializeComponent();
-
-            //Hardcoded needs to be changed
-            List<string> companies = new List<string>() { "Company 1", "Company 2", "Company 3", "Company 4", "Company 5" };
-            CompanyPicker.ItemsSource = companies;
-        }
-
-        private void FilePickerButton_Clicked(object sender, EventArgs e)
-        {
-            _ = DisplayAlert("WIP", "Hier komt de filepicker voor het contract", "OK");
-        }
-
-        private void AddProjectButton_Clicked(object sender, EventArgs e)
-        {
-            App.Current.MainPage.Navigation.PopAsync();
-            _ = DisplayAlert("Gelukt", "Project is aangemaakt", "OK");
+            BindingContext = new ProjectAddViewModel();
         }
     }
 }
