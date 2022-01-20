@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PenScan.Views.Project
+namespace PenScan.Views.Projects
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProjectOverview : ContentPage

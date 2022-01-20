@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
 using System.Windows.Input;
-using PenScan.Views.Project;
+using PenScan.Views.Projects;
 using PenScan.Models;
 
 namespace PenScan.ViewModels.Access

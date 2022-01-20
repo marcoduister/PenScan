@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
 using System.Windows.Input;
-using PenScan.Views.Project;
+using PenScan.Views.Projects;
 using System.Collections.ObjectModel;
 using PenScan.Models;
 using System.Threading.Tasks;
@@ -40,7 +40,7 @@ namespace PenScan.ViewModels.Projects
                 {
                     _ProjectSelected = value;
                     NotifyPropertyChanged("ItemSelected");
-                    App.Current.MainPage.Navigation.PushAsync(new AddProjectPage());// dit is de oplossing voor listviewtap
+                    App.Current.MainPage.Navigation.PushAsync(new ProjectDetailPage(_ProjectSelected));// dit is de oplossing voor listviewtap
                 }
             }
         }

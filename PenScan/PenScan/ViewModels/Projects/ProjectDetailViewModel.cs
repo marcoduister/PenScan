@@ -1,4 +1,5 @@
 ﻿using PenScan.Models;
+using PenScan.Views.ProjectPhases;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,9 +11,9 @@ namespace PenScan.ViewModels
 {
     public class ProjectDetailViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        
         private ObservableCollection<ProjectPhase> projectPhases;
+        private ProjectPhase _ProjectPhaseSelected;
 
         public ObservableCollection<ProjectPhase> ProjectPhases
         {
@@ -20,6 +21,24 @@ namespace PenScan.ViewModels
             set
             {
                 projectPhases = value;
+                NotifyPropertyChanged("ProjectPhases"); ;
+            }
+        }
+
+        public ProjectPhase ProjectPhaseSelected
+        {
+            get
+            {
+                return _ProjectPhaseSelected;
+            }
+            set
+            {
+                if (_ProjectPhaseSelected != value)
+                {
+                    _ProjectPhaseSelected = value;
+                    NotifyPropertyChanged("ItemSelected");
+                    App.Current.MainPage.Navigation.PushAsync(new PreEngagementPage());
+                }
             }
         }
 
