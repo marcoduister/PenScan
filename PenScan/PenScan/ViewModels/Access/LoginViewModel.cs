@@ -6,12 +6,12 @@ using System.Text;
 using Xamarin.Forms;
 using System.Windows.Input;
 using PenScan.Views.Project;
+using PenScan.Models;
 
 namespace PenScan.ViewModels.Access
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : BaseViewModel
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         private string email;
         private string password;
         public LoginViewModel()
@@ -25,7 +25,7 @@ namespace PenScan.ViewModels.Access
             set
             {
                 email = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Email"));
+                NotifyPropertyChanged("Email");
             }
         }
 
@@ -35,7 +35,7 @@ namespace PenScan.ViewModels.Access
             set
             {
                 password = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Password"));
+                NotifyPropertyChanged("Password");
             }
         }
 
@@ -55,8 +55,13 @@ namespace PenScan.ViewModels.Access
             }
             else
             {
-                if (Email == "corona" && Password == "qwerty")
+                User inlogUser = db().validateUserAsync(Email, Password).Result;
+                if (inlogUser != null)
                 {
+                    Application.Current.Properties.Clear();
+                    Application.Current.Properties["Email"] = email;
+                    Application.Current.Properties["UserId"] = inlogUser.Id;
+                    Application.Current.Properties["UserRole"] = inlogUser.Role;
 
                     App.Current.MainPage.Navigation.PushAsync(new ProjectOverview());
                 }

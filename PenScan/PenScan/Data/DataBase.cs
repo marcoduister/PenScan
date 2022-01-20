@@ -24,6 +24,48 @@ namespace PenScan.Data
         }
 
 
+        #region Access
+
+        public async Task<Boolean> EmailExistAsync(string Email)
+        {
+            User ExistingUser = _sqlconnection.Table<User>().FirstOrDefaultAsync(e => e.Email == Email).Result;
+            if (ExistingUser == null)
+            {
+                return true;
+                
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        public Task<int> InsertUserAsync(User user)
+        {
+            return _sqlconnection.InsertAsync(user);
+        }
+        public async Task<User> validateUserAsync(string Email, string Password)
+        {
+
+            try
+            {
+                string salt = _sqlconnection.Table<User>().FirstAsync(e => e.Email == Email).Result.Salt;
+                string pwdHashed = SecurityHelper.HashPassword(Password, salt, 10101, 70);
+
+                return  _sqlconnection.Table<User>().FirstOrDefaultAsync(e => e.Email == Email && e.Password == pwdHashed).Result;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
+        }
+
+
+        #endregion
+
+
         #region Project
 
         public List<Project> GetProjectAllAsync()
