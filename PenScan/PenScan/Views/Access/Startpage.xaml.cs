@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PenScan.Views.Scan;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,11 @@ namespace PenScan.Views.Access
         private void RegisterRedirectButton_Clicked(object sender, EventArgs e)
         {
             App.Current.MainPage.Navigation.PushAsync(new RegistrationPage());
+        }
+
+        private void scanner_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PushAsync(new Scanner());
         }
     }
 }
