@@ -16,6 +16,8 @@ namespace PenScan.ViewModels.Projects
     {
 
         private ObservableCollection<Project> projects;
+        private Project _ProjectSelected;
+
         public ObservableCollection<Project> Projects
         {
             get { return projects; }
@@ -23,6 +25,23 @@ namespace PenScan.ViewModels.Projects
             {
                 projects = value;
                 NotifyPropertyChanged("Projects"); ;
+            }
+        }
+
+        public Project ProjectSelected
+        {
+            get
+            {
+                return _ProjectSelected;
+            }
+            set
+            {
+                if (_ProjectSelected != value)
+                {
+                    _ProjectSelected = value;
+                    NotifyPropertyChanged("ItemSelected");
+                    App.Current.MainPage.Navigation.PushAsync(new AddProjectPage());// dit is de oplossing voor listviewtap
+                }
             }
         }
 
@@ -35,6 +54,7 @@ namespace PenScan.ViewModels.Projects
         public Command refresh => new Command(Refresh);
         public Command EditCommand => new Command<int>((x) => EditProject(x));
         public Command DeleteCommand => new Command<int>((x) => DeleteProject(x));
+
 
         private void Refresh()
         {

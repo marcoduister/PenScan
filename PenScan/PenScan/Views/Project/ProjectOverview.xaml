@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              x:Class="PenScan.Views.Project.ProjectOverview"
              x:Name="Projectview">
 
@@ -9,7 +8,7 @@
         <ToolbarItem Text="Add" Command="{Binding AddCommand}" Order="Primary" Priority="0" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView x:Name="ProjectList" ItemsSource="{Binding Projects}"  IsPullToRefreshEnabled="true" HasUnevenRows="True" RowHeight="60" >
+        <ListView x:Name="ProjectList" ItemsSource="{Binding Projects}" SelectedItem="{Binding ProjectSelected, Mode=TwoWay}"  IsPullToRefreshEnabled="true" HasUnevenRows="True" RowHeight="60" >
             <ListView.ItemTemplate  >
                 <DataTemplate>
                     <ViewCell>
