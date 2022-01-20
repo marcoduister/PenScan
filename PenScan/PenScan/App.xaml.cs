@@ -14,7 +14,6 @@ namespace PenScan
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new NavigationPage(new Startpage());
             //MainPage = new AppShell();
         }

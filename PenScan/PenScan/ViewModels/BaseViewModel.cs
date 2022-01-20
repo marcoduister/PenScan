@@ -1,4 +1,5 @@
-﻿using PenScan.Models;
+﻿using PenScan.Data;
+using PenScan.Models;
 using PenScan.Services;
 using System;
 using System.Collections.Generic;
@@ -10,45 +11,37 @@ namespace PenScan.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        private static DataBase database = null;
 
-        bool isBusy = false;
-        public bool IsBusy
+
+        public static DataBase db()
         {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+            if (database == null)
+                database = new DataBase();
+            return database;
         }
 
-        string title = string.Empty;
-        public string Title
+        private bool _isLoading { get; set; }
+        public bool IsLoading
         {
-            get { return title; }
-            set { SetProperty(ref title, value); }
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                if (value != _isLoading)
+                {
+                    _isLoading = value;
+                    NotifyPropertyChanged();
+                }
+            }
         }
 
-        protected bool SetProperty<T>(ref T backingStore, T value,
-            [CallerMemberName] string propertyName = "",
-            Action onChanged = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(backingStore, value))
-                return false;
-
-            backingStore = value;
-            onChanged?.Invoke();
-            OnPropertyChanged(propertyName);
-            return true;
-        }
-
-        #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        protected void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            var changed = PropertyChanged;
-            if (changed == null)
-                return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
     }
 }

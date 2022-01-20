@@ -24,6 +24,16 @@
                             <Entry x:Name="Email" Text="{Binding Email}"/>
                             <Label x:Name="EmailLabel"/>
                         </StackLayout>
+                        <StackLayout>
+                            <Label FontSize="18" Text="FirstName *" />
+                            <Entry x:Name="FirstName" Text="{Binding FirstName}"/>
+                            <Label x:Name="FirstNameLabel"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label FontSize="18" Text="LastName *" />
+                            <Entry x:Name="LastName" Text="{Binding LastName}"/>
+                            <Label x:Name="LastNameLabel"/>
+                        </StackLayout>
 
                         <StackLayout>
                             <Label FontSize="18" Text="Password *" />
