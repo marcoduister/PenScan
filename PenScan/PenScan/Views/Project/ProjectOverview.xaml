@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              x:Class="PenScan.Views.Project.ProjectOverview"
              x:Name="Projectview">
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddCommand}" Order="Primary" Priority="0" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView x:Name="ProjectList" ItemsSource="{Binding Projects}" IsPullToRefreshEnabled="true" HasUnevenRows="True" RowHeight="60" >
+        <ListView x:Name="ProjectList" ItemsSource="{Binding Projects}"  IsPullToRefreshEnabled="true" HasUnevenRows="True" RowHeight="60" >
             <ListView.ItemTemplate  >
                 <DataTemplate>
                     <ViewCell>
@@ -21,7 +23,6 @@
                                              CommandParameter="{Binding Id}" BackgroundColor="Transparent" />
                                 <ImageButton x:Name="Deletebutton" Source="DeleteIcon.png" Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference ProjectList}}" 
                                              CommandParameter="{Binding Id}" BackgroundColor="Transparent" />
-
                             </StackLayout>
                         </Frame>
                     </ViewCell>
