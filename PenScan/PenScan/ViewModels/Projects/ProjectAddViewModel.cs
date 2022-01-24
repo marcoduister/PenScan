@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace PenScan.ViewModels.Projects
 {
-    public class ProjectAddViewModel : BaseViewModel
+    public class ScannerViewModel : BaseViewModel
     {
         private string _ProjectName;
         private string _Description;

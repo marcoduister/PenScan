@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PenScan.Views.Scan.Scanner">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="ScanItems" ItemsSource="{Binding ScanItems}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*" />
+                                    <ColumnDefinition Width="30*" />
+                                    <ColumnDefinition Width="30*" />
+                                    <ColumnDefinition Width="30*" />
+                                    <ColumnDefinition Width="30*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label  Grid.Column="0" Text="{Binding Ipaddress}"/>
+                                <Label  Grid.Column="1" Text="{Binding Protocol}"/>
+                                <Label  Grid.Column="2" Text="{Binding Port}"/>
+                                <Label Grid.Column="3" Text="{Binding HostName}"/>
+                                <Label Grid.Column="4" Text="{Binding State}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label Text="klick op Start scanner" />
+            <ProgressBar x:Name="myprogress" HeightRequest="150" WidthRequest="50" Progress="{Binding Ipprogres}" ProgressColor="Orange" />
+            <Button x:Name="Ipscanbutton" IsVisible="{Binding ScanButtonvisibul}" Text="Start scanner" Command="{Binding ScannerCommand}"/>
+            <Button x:Name="Next" Text="Next" Command="{Binding NextCommand}"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

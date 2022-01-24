@@ -1,4 +1,4 @@
-﻿using PenScan.ViewModels.Projects;
+﻿using PenScan.ViewModels.Scan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PenScan.Views.Projects
+namespace PenScan.Views.Scan
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddProjectPage : ContentPage
+    public partial class Scanner : ContentPage
     {
-        public AddProjectPage()
+        public Scanner()
         {
             InitializeComponent();
             BindingContext = new ScannerViewModel();
