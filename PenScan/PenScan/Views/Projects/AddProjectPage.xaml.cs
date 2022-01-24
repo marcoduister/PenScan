@@ -16,7 +16,7 @@ namespace PenScan.Views.Projects
         public AddProjectPage()
         {
             InitializeComponent();
-            BindingContext = new ScannerViewModel();
+            BindingContext = new ProjectAddViewModel();
         }
     }
 }
