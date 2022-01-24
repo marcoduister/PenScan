@@ -31,10 +31,26 @@ namespace PenScan.Views.Access
             Email.Text = "";
             Password.Text = "";
 
-            Vibration.Vibrate(5000);
-            
+            try
+            {
+                Vibration.Vibrate();
+                var duration = TimeSpan.FromSeconds(60);
+                Vibration.Vibrate(duration); 
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                // Feature not supported on device
+                DisplayAlert("Broken", "Feature Not Supported", "Close");
+            }
+            catch (Exception ex)
+            {
+                // Other error has occurred.
+                DisplayAlert("Broken", "Other Exception", "Close");
+            }
+
+
             // Process shake event
-            DisplayAlert("Shake It", "Earthquake Detected!!", "Close");
+            DisplayAlert("Shake It", "Clearing fields!", "Close");
         }
     }
 }
