@@ -1,5 +1,7 @@
 ﻿using PenScan.Models;
+using PenScan.Services;
 using PenScan.Views.ProjectPhases;
+using PenScan.Views.Scan;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +16,17 @@ namespace PenScan.ViewModels
         
         private ObservableCollection<ProjectPhase> projectPhases;
         private ProjectPhase _ProjectPhaseSelected;
+        private Project _Project;
 
+        public Project Project
+        {
+            get { return _Project; }
+            set
+            {
+                _Project = value;
+                NotifyPropertyChanged("Project"); ;
+            }
+        }
         public ObservableCollection<ProjectPhase> ProjectPhases
         {
             get { return projectPhases; }
@@ -37,13 +49,42 @@ namespace PenScan.ViewModels
                 {
                     _ProjectPhaseSelected = value;
                     NotifyPropertyChanged("ItemSelected");
-                    App.Current.MainPage.Navigation.PushAsync(new PreEngagementPage());
+                    switch (_ProjectPhaseSelected.Id)
+                    {
+                        case 1:
+                            App.Current.MainPage.Navigation.PushAsync(new PreEngagementPage());
+                            break;
+                        case 2:
+                            App.Current.MainPage.Navigation.PushAsync(new Views.Scan.Scanner());
+                            break;
+                        case 3:
+                            // code block
+                            break;
+                        case 4:
+                            // code block
+                            break;
+                        case 5:
+                            // code block
+                            break;
+                        case 6:
+                            // code block
+                            break;
+                        case 7:
+                            // code block
+                            break;
+                        default:
+                            // code block
+                            break;
+                    }
+                    
+
                 }
             }
         }
 
-        public ProjectDetailViewModel()
+        public ProjectDetailViewModel(Project project)
         {
+
             ProjectPhases = new ObservableCollection<ProjectPhase>() {
                 new ProjectPhase()
                 {

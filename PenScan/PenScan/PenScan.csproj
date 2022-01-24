@@ -22,16 +22,16 @@
     <EmbeddedResource Update="Views\ProjectPhases\PreEngagementPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Projects\AddProjectPage.xaml">
+    <EmbeddedResource Update="Views\Project\AddProjectPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Projects\EditProjectPage.xaml">
+    <EmbeddedResource Update="Views\Project\EditProjectPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Projects\ProjectDetailPage.xaml">
+    <EmbeddedResource Update="Views\Project\ProjectDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Projects\ProjectOverview.xaml">
+    <EmbeddedResource Update="Views\Project\ProjectOverview.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Scan\Scanner.xaml">

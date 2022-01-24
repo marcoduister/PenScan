@@ -14,13 +14,11 @@ namespace PenScan.Views.Projects
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProjectDetailPage : ContentPage
     {
-        public Project SelectedProject { get; set; }
 
         public ProjectDetailPage(Project project)
         {
             InitializeComponent();
-            SelectedProject = project;
-            BindingContext = new ProjectDetailViewModel();
+            BindingContext = new ProjectDetailViewModel(project);
         }
     }
 }
