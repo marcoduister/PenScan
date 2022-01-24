@@ -13,5 +13,6 @@ namespace PenScan.Models
         public string HostName { get; set; }
         public string Protocol { get; set; }
         public int Port { get; set; }
+        public int projectId { get; set; }
     }
 }

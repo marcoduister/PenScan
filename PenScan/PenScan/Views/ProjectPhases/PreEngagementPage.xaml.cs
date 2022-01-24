@@ -13,10 +13,10 @@ namespace PenScan.Views.ProjectPhases
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PreEngagementPage : ContentPage
     {
-        public PreEngagementPage()
+        public PreEngagementPage(int _ProjectId)
         {
             InitializeComponent();
-            BindingContext = new PreEngagementViewModel();
+            BindingContext = new PreEngagementViewModel(_ProjectId);
         }
     }
 }

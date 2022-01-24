@@ -65,6 +65,60 @@ namespace PenScan.Data
 
         #endregion
 
+        #region Contract
+
+        public Contract GetContractbyIdAsync(int ProjectId)
+        {
+            return _sqlconnection.Table<Contract>().FirstAsync(e => e.ProjectId == ProjectId).Result;
+        }
+
+
+        public Task<int> InsertContract(Contract contract)
+        {
+            try
+            {
+                returns = _sqlconnection.InsertAsync(contract);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return returns;
+        }
+
+        #endregion
+
+        #region scan
+
+        public List<ScanItem> GetAllscanitemsbyIdAsync(int Id)
+        {
+            var list = new List<ScanItem>();
+            try
+            {
+                list = _sqlconnection.Table<ScanItem>().Where(x=>x.projectId == Id).ToListAsync().Result;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return list;
+        }
+
+        public Task<int> InsertScanitemsAsync(ObservableCollection<ScanItem> scanItems)
+        {
+            try
+            {
+                returns = _sqlconnection.InsertAsync(scanItems);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return returns;
+        }
+        #endregion
 
         #region Project
 
@@ -86,6 +140,9 @@ namespace PenScan.Data
         {
             return _sqlconnection.Table<Project>().FirstAsync(e => e.Id == Id).Result;
         }
+
+
+
         public Task<int> InsertProjectAsync(Project project)
         {
             try
@@ -99,6 +156,7 @@ namespace PenScan.Data
             }
             return returns;
         }
+
         public Task<int> UpdateProjectAsync(Project project)
         {
             try

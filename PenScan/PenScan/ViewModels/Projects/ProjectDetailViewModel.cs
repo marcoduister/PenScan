@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PenScan.ViewModels
@@ -48,43 +49,18 @@ namespace PenScan.ViewModels
                 if (_ProjectPhaseSelected != value)
                 {
                     _ProjectPhaseSelected = value;
-                    NotifyPropertyChanged("ItemSelected");
-                    switch (_ProjectPhaseSelected.Id)
-                    {
-                        case 1:
-                            App.Current.MainPage.Navigation.PushAsync(new PreEngagementPage());
-                            break;
-                        case 2:
-                            App.Current.MainPage.Navigation.PushAsync(new Views.Scan.Scanner());
-                            break;
-                        case 3:
-                            // code block
-                            break;
-                        case 4:
-                            // code block
-                            break;
-                        case 5:
-                            // code block
-                            break;
-                        case 6:
-                            // code block
-                            break;
-                        case 7:
-                            // code block
-                            break;
-                        default:
-                            // code block
-                            break;
-                    }
-                    
+                    NotifyPropertyChanged("ProjectPhaseSelected");
+                    SelectionCommand.Execute(_ProjectPhaseSelected.Id);
 
+                    
                 }
             }
         }
 
+
         public ProjectDetailViewModel(Project project)
         {
-
+            Project = project;
             ProjectPhases = new ObservableCollection<ProjectPhase>() {
                 new ProjectPhase()
                 {
@@ -130,6 +106,40 @@ namespace PenScan.ViewModels
                 },
             };
 
+        }
+
+
+        public ICommand SelectionCommand => new Command<int>((x) => switchcomand(x));
+
+        public void switchcomand(int Id)
+        {
+            switch (Id)
+            {
+                case 1:
+                    App.Current.MainPage.Navigation.PushAsync(new Views.ProjectPhases.PreEngagementPage(Project.Id));
+                    break;
+                case 2:
+                    App.Current.MainPage.Navigation.PushAsync(new Views.Scan.Scanner(Project.Id));
+                    break;
+                case 3:
+                    // code block
+                    break;
+                case 4:
+                    // code block
+                    break;
+                case 5:
+                    // code block
+                    break;
+                case 6:
+                    // code block
+                    break;
+                case 7:
+                    // code block
+                    break;
+                default:
+                    // code block
+                    break;
+            }
         }
     }
 }

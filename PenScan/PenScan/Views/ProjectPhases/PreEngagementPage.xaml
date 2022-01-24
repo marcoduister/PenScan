@@ -4,13 +4,17 @@
              x:Class="PenScan.Views.ProjectPhases.PreEngagementPage">
     <ContentPage.Content>
         <StackLayout Padding="30">
-            <Label Text="Contact Id:"/>
-            <Entry Text="{Binding ContractId}" IsReadOnly="False"/>
 
-            <Label Text="Akkoord met contract?"/>
-            <CheckBox x:Name="ContractSignedCheckBox"/>
+            <Label Text="signature"/>
+            <Frame HeightRequest="150" WidthRequest="150" BackgroundColor="Transparent" Padding="0" HasShadow="false">
+                <Image x:Name="ProfileImage" Source="{Binding ContractImage}"  HeightRequest="50" WidthRequest="50" />
+            </Frame>
 
-            <Button x:Name="ContractConfirmButton" Text="Confirm" Command="{Binding ConfirmCommand}"/>
+            <Label Text="signed"/>
+            <CheckBox x:Name="ContractSignedCheckBox" IsChecked="{Binding Contractsigned}" IsEnabled="False"/>
+            <Button x:Name="FileUploadButton" Text="Upload Contract" Command="{Binding TakeFileCommand}" />
+            <Button x:Name="PhotoUploadButton" Text="Upload signature" Command="{Binding TakeSignatureCommand}" />
+            <Button x:Name="ContractConfirmButton" Text="Save" Command="{Binding ConfirmCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
