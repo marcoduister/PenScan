@@ -21,17 +21,20 @@ namespace PenScan.Views.Access
             this.BindingContext = new LoginViewModel();
 
             Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
-
+            
             if (!Accelerometer.IsMonitoring)
                 Accelerometer.Start(SensorSpeed.Game);
         }
 
         void Accelerometer_ShakeDetected(object sender, EventArgs e)
         {
-            // Process shake event
             Email.Text = "";
             Password.Text = "";
-            DisplayAlert("Shake It", "Earthquake Detected", "Close");
+
+            Vibration.Vibrate(5000);
+            
+            // Process shake event
+            DisplayAlert("Shake It", "Earthquake Detected!!", "Close");
         }
     }
 }
