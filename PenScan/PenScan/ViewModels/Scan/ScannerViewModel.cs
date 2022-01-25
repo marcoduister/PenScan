@@ -1,6 +1,6 @@
 ﻿using PenScan.Data;
 using PenScan.Models;
-using PenScan.Views.Project;
+using PenScan.Views.Projects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,7 +19,9 @@ namespace PenScan.ViewModels.Scan
     {
         private double _Ipprogres;
         private string _ProgresLabel;
+        private int _projectId;
         private bool _scanbuttonvisibul = true;
+        private bool _savebutton = true;
         private List<string> _Ipadressen = new List<string>();
         private ObservableCollection<ScanItem> _ScanItems = new ObservableCollection<ScanItem>();
 
@@ -69,12 +71,44 @@ namespace PenScan.ViewModels.Scan
             }
         }
 
-        public ScannerViewModel()
+        public ScannerViewModel(int projectId)
         {
-
+            _projectId = projectId;
+            var scanlist = db().GetAllscanitemsbyIdAsync(projectId);
+            if (scanlist.Count != 0 )
+            {
+                ScanButtonvisibul = false;
+                _savebutton = false;
+                ScanItems = new ObservableCollection<ScanItem>(scanlist as List<ScanItem>);
+            }
         }
 
         public ICommand ScannerCommand => new Command(Scanner);
+        public ICommand SaveCommand => new Command(Save);
+
+        private async void Save()
+        {
+            if (ScanItems != null)
+            {
+                if (_savebutton)
+                {
+                    var id = db().InsertScanitemsAsync(ScanItems);
+                    if (id != null)
+                    {
+                        await App.Current.MainPage.Navigation.PopAsync();
+                    }
+                }
+                else
+                {
+                    await App.Current.MainPage.Navigation.PopAsync();
+                }
+
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("geen scan gedaan", "er is helaas geen content gevonden voor de scan probeer het later opniew", "OK");
+            }
+        }
 
         private async void Scanner()
         {
@@ -86,7 +120,9 @@ namespace PenScan.ViewModels.Scan
                 HostName = "marco",
                 Port = 453,
                 State = "open",
-                Protocol = "tcp"
+                Protocol = "tcp",
+                projectId = _projectId
+
             });
             ScanItems.Add(new ScanItem
             {
@@ -94,7 +130,8 @@ namespace PenScan.ViewModels.Scan
                 HostName = "server",
                 Port = 54,
                 State = "open",
-                Protocol = "tcp"
+                Protocol = "tcp",
+                projectId = _projectId
             });
             ScanItems.Add(new ScanItem
             {
@@ -102,7 +139,8 @@ namespace PenScan.ViewModels.Scan
                 HostName = "server",
                 Port = 80,
                 State = "open",
-                Protocol = "tcp"
+                Protocol = "tcp",
+                projectId = _projectId
             });
             ScanItems.Add(new ScanItem
             {
@@ -110,7 +148,8 @@ namespace PenScan.ViewModels.Scan
                 HostName = "patrick",
                 Port = 21,
                 State = "open",
-                Protocol = "tcp"
+                Protocol = "tcp",
+                projectId = _projectId
             });
             ScanItems.Add(new ScanItem
             {
@@ -118,7 +157,8 @@ namespace PenScan.ViewModels.Scan
                 HostName = "patrick",
                 Port = 80,
                 State = "open",
-                Protocol = "tcp"
+                Protocol = "tcp",
+                projectId = _projectId
             });
             ScanItems.Add(new ScanItem
             {
@@ -126,7 +166,8 @@ namespace PenScan.ViewModels.Scan
                 HostName = "rosaline",
                 Port = 21,
                 State = "open",
-                Protocol = "tcp"
+                Protocol = "tcp",
+                projectId = _projectId
             });
 
             Ipprogres += 1.00;
@@ -135,6 +176,7 @@ namespace PenScan.ViewModels.Scan
             //PortScanner();
         }
 
+        //deze functie scant niets als het op de emulator gebeurt vanwegen het niet bestaand network
         private async void IpScanner()
         {
             ProgresLabel = "Scanning Ip's on network!!";
@@ -157,6 +199,8 @@ namespace PenScan.ViewModels.Scan
             }
 
         }
+
+        //deze functie scant niets als het op de emulator gebeurt vanwegen het niet bestaand network
         public async void PortScanner()
         {
             ProgresLabel = "Scanning ports on ip!!";

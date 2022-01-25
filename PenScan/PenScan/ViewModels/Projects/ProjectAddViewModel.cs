@@ -1,6 +1,6 @@
 ﻿using PenScan.Data;
 using PenScan.Models;
-using PenScan.Views.Project;
+using PenScan.Views.Projects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace PenScan.ViewModels.Projects
 {
-    public class ScannerViewModel : BaseViewModel
+    public class ProjectAddViewModel : BaseViewModel
     {
         private string _ProjectName;
         private string _Description;

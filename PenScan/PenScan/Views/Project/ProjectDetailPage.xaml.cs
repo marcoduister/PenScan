@@ -1,4 +1,5 @@
-﻿using PenScan.ViewModels.Projects;
+﻿using PenScan.Models;
+using PenScan.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,13 @@ using Xamarin.Forms.Xaml;
 namespace PenScan.Views.Projects
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditProjectPage : ContentPage
+    public partial class ProjectDetailPage : ContentPage
     {
-        public EditProjectPage(int Id)
+
+        public ProjectDetailPage(Project project)
         {
             InitializeComponent();
-            BindingContext = new ProjectEditViewModel(Id);
+            BindingContext = new ProjectDetailViewModel(project);
         }
     }
 }

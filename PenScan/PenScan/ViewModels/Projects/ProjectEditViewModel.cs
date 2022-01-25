@@ -1,6 +1,6 @@
 ﻿using PenScan.Data;
 using PenScan.Models;
-using PenScan.Views.Project;
+using PenScan.Views.Projects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

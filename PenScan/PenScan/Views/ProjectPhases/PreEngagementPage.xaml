@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PenScan.Views.ProjectPhases.PreEngagementPage">
+    <ContentPage.Content>
+        <StackLayout Padding="30">
+
+            <Label Text="signature"/>
+            <Frame HeightRequest="150" WidthRequest="150" BackgroundColor="Transparent" Padding="0" HasShadow="false">
+                <Image x:Name="ProfileImage" Source="{Binding ContractImage}"  HeightRequest="50" WidthRequest="50" />
+            </Frame>
+
+            <Label Text="signed"/>
+            <CheckBox x:Name="ContractSignedCheckBox" IsChecked="{Binding Contractsigned}" IsEnabled="False"/>
+            <Button x:Name="PhotoUploadButton" Text="Upload signature" Command="{Binding TakeSignatureCommand}" />
+            <Button x:Name="ContractConfirmButton" Text="Save" Command="{Binding ConfirmCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

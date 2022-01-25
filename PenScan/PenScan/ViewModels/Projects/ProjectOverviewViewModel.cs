@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
 using System.Windows.Input;
-using PenScan.Views.Project;
+using PenScan.Views.Projects;
 using System.Collections.ObjectModel;
 using PenScan.Models;
 using System.Threading.Tasks;
@@ -40,7 +40,8 @@ namespace PenScan.ViewModels.Projects
                 {
                     _ProjectSelected = value;
                     NotifyPropertyChanged("ItemSelected");
-                    App.Current.MainPage.Navigation.PushAsync(new AddProjectPage());// dit is de oplossing voor listviewtap
+                    App.Current.MainPage.Navigation.PushAsync(new ProjectDetailPage(_ProjectSelected));
+                    // dit is de oplossing voor listviewtap
                 }
             }
         }
@@ -70,6 +71,7 @@ namespace PenScan.ViewModels.Projects
         {
             App.Current.MainPage.Navigation.PushAsync(new EditProjectPage(Id));
         }
+
         private async void DeleteProject(int Id)
         {
             var answer = await App.Current.MainPage.DisplayAlert("Deleting a project?", "are you sure you want to do this", "Yes", "No");
@@ -86,14 +88,11 @@ namespace PenScan.ViewModels.Projects
                 {
                     await App.Current.MainPage.DisplayAlert("mislukt", "Er is iets fout gegaan probeer het later opnieuw!", "OK");
                 }
-                
             }
             else
             {
                 await App.Current.MainPage.DisplayAlert("niet verwijder", "u heeft het project niet verwijderd", "OK");
             }
         }
-
-
     }
 }

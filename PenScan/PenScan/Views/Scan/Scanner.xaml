@@ -33,7 +33,7 @@
             <Label Text="klick op Start scanner" />
             <ProgressBar x:Name="myprogress" HeightRequest="150" WidthRequest="50" Progress="{Binding Ipprogres}" ProgressColor="Orange" />
             <Button x:Name="Ipscanbutton" IsVisible="{Binding ScanButtonvisibul}" Text="Start scanner" Command="{Binding ScannerCommand}"/>
-            <Button x:Name="Next" Text="Next" Command="{Binding NextCommand}"/>
+            <Button x:Name="Save" Text="Save" Command="{Binding SaveCommand}"/>
 
         </StackLayout>
     </ContentPage.Content>

@@ -1,4 +1,4 @@
-﻿using PenScan.ViewModels.Projects;
+﻿using PenScan.ViewModels.ProjectPhases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PenScan.Views.Projects
+namespace PenScan.Views.ProjectPhases
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditProjectPage : ContentPage
+    public partial class PreEngagementPage : ContentPage
     {
-        public EditProjectPage(int Id)
+        public PreEngagementPage(int _ProjectId)
         {
             InitializeComponent();
-            BindingContext = new ProjectEditViewModel(Id);
+            BindingContext = new PreEngagementViewModel(_ProjectId);
         }
     }
 }

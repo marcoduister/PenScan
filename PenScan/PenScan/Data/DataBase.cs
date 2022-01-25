@@ -4,6 +4,7 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -21,6 +22,7 @@ namespace PenScan.Data
             _sqlconnection.CreateTableAsync<User>();
             _sqlconnection.CreateTableAsync<Contract>();
             _sqlconnection.CreateTableAsync<Project>();
+            _sqlconnection.CreateTableAsync<ScanItem>();
         }
 
 
@@ -65,6 +67,72 @@ namespace PenScan.Data
 
         #endregion
 
+        #region Contract
+
+        public Contract GetContractbyIdAsync(int ProjectId)
+        {
+            try
+            {
+                return _sqlconnection.Table<Contract>().FirstAsync(e => e.ProjectId == ProjectId).Result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            
+        }
+
+
+        public Task<int> InsertContract(Contract contract)
+        {
+            try
+            {
+                returns = _sqlconnection.InsertAsync(contract);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return returns;
+        }
+
+        #endregion
+
+        #region scan
+
+        public List<ScanItem> GetAllscanitemsbyIdAsync(int Id)
+        {
+            var list = new List<ScanItem>();
+            try
+            {
+                list = _sqlconnection.Table<ScanItem>().Where(x=>x.projectId == Id).ToListAsync().Result;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return list;
+        }
+
+        public Task<int> InsertScanitemsAsync(ObservableCollection<ScanItem> scanItems)
+        {
+            try
+            {
+                
+                foreach (var item in scanItems.ToList())
+                {
+                    returns = _sqlconnection.InsertAsync(item);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return returns;
+        }
+        #endregion
 
         #region Project
 
@@ -86,6 +154,9 @@ namespace PenScan.Data
         {
             return _sqlconnection.Table<Project>().FirstAsync(e => e.Id == Id).Result;
         }
+
+
+
         public Task<int> InsertProjectAsync(Project project)
         {
             try
@@ -99,6 +170,7 @@ namespace PenScan.Data
             }
             return returns;
         }
+
         public Task<int> UpdateProjectAsync(Project project)
         {
             try

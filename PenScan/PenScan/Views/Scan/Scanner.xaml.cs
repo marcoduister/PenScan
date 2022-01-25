@@ -13,10 +13,10 @@ namespace PenScan.Views.Scan
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Scanner : ContentPage
     {
-        public Scanner()
+        public Scanner(int _projectId)
         {
+            BindingContext = new ScannerViewModel(_projectId);
             InitializeComponent();
-            BindingContext = new ScannerViewModel();
         }
     }
 }
