@@ -20,7 +20,7 @@
                     <StackLayout Orientation="Vertical" Spacing="10">
                         
                         <StackLayout>
-                            <Label FontSize="18" Text="Email Adress *" />
+                            <Label FontSize="18" Text="Email Address *" />
                             <Entry x:Name="Email" Text="{Binding Email}"/>
                             <Label x:Name="EmailLabel"/>
                         </StackLayout>
