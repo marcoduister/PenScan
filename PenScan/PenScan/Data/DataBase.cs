@@ -4,6 +4,7 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -21,6 +22,7 @@ namespace PenScan.Data
             _sqlconnection.CreateTableAsync<User>();
             _sqlconnection.CreateTableAsync<Contract>();
             _sqlconnection.CreateTableAsync<Project>();
+            _sqlconnection.CreateTableAsync<ScanItem>();
         }
 
 
@@ -69,7 +71,15 @@ namespace PenScan.Data
 
         public Contract GetContractbyIdAsync(int ProjectId)
         {
-            return _sqlconnection.Table<Contract>().FirstAsync(e => e.ProjectId == ProjectId).Result;
+            try
+            {
+                return _sqlconnection.Table<Contract>().FirstAsync(e => e.ProjectId == ProjectId).Result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            
         }
 
 
@@ -109,7 +119,11 @@ namespace PenScan.Data
         {
             try
             {
-                returns = _sqlconnection.InsertAsync(scanItems);
+                
+                foreach (var item in scanItems.ToList())
+                {
+                    returns = _sqlconnection.InsertAsync(item);
+                }
             }
             catch (Exception ex)
             {

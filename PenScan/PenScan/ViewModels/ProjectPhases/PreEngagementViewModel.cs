@@ -66,9 +66,21 @@ namespace PenScan.ViewModels.ProjectPhases
 
         public PreEngagementViewModel(int projectId)
         {
-            contract = new Models.Contract();
-            ProjectId = projectId;
-            contract.ProjectId = ProjectId;
+            
+            var localcontract = db().GetContractbyIdAsync(projectId);
+            if (localcontract != null)
+            {
+                contract = localcontract;
+                Contractsigned = contract.Confirmd;
+                ContractImage = contract.signature;
+                ProjectId = contract.ProjectId;
+            }
+            else
+            {
+                contract = new Models.Contract();
+                contract.ProjectId = ProjectId;
+                ProjectId = projectId;
+            }
         }
 
         public ICommand ConfirmCommand => new Command(Confirm);
@@ -102,11 +114,7 @@ namespace PenScan.ViewModels.ProjectPhases
             }
             else
             {
-                var Localcontract = contract;
-                Localcontract.signature = photo.Path;
-                contract = Localcontract;
-
-
+                contract.signature = photo.Path;
                 Contractsigned = true;
             }
                 
@@ -116,20 +124,28 @@ namespace PenScan.ViewModels.ProjectPhases
 
         public async void Confirm()
         {
-            if (ContractImage == null)
+            if (contract.Id == 0)
             {
-                contract.ProjectId = ProjectId;
-                contract.Confirmd = Contractsigned;
-                var Id = db().InsertContract(contract);
-                if (Id != null)
+                if (ContractImage != null)
                 {
-                    await App.Current.MainPage.Navigation.PopAsync();
-                }
-                else
-                {
-                    await App.Current.MainPage.DisplayAlert("Empty Values", "Please enter all values", "OK");
+                    contract.ProjectId = ProjectId;
+                    contract.Confirmd = Contractsigned;
+                    var Id = db().InsertContract(contract);
+                    if (Id != null)
+                    {
+                        await App.Current.MainPage.Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Empty Values", "Please enter all values", "OK");
+                    }
                 }
             }
+            else
+            {
+                await App.Current.MainPage.Navigation.PopAsync();
+            }
+            
         }
     }
 }

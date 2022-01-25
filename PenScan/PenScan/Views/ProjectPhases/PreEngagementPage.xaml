@@ -12,7 +12,6 @@
 
             <Label Text="signed"/>
             <CheckBox x:Name="ContractSignedCheckBox" IsChecked="{Binding Contractsigned}" IsEnabled="False"/>
-            <Button x:Name="FileUploadButton" Text="Upload Contract" Command="{Binding TakeFileCommand}" />
             <Button x:Name="PhotoUploadButton" Text="Upload signature" Command="{Binding TakeSignatureCommand}" />
             <Button x:Name="ContractConfirmButton" Text="Save" Command="{Binding ConfirmCommand}"/>
         </StackLayout>

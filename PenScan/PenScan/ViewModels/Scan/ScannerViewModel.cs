@@ -21,6 +21,7 @@ namespace PenScan.ViewModels.Scan
         private string _ProgresLabel;
         private int _projectId;
         private bool _scanbuttonvisibul = true;
+        private bool _savebutton = true;
         private List<string> _Ipadressen = new List<string>();
         private ObservableCollection<ScanItem> _ScanItems = new ObservableCollection<ScanItem>();
 
@@ -74,9 +75,10 @@ namespace PenScan.ViewModels.Scan
         {
             _projectId = projectId;
             var scanlist = db().GetAllscanitemsbyIdAsync(projectId);
-            if (scanlist.Count != 0 || scanlist != null)
+            if (scanlist.Count != 0 )
             {
                 ScanButtonvisibul = false;
+                _savebutton = false;
                 ScanItems = new ObservableCollection<ScanItem>(scanlist as List<ScanItem>);
             }
         }
@@ -88,8 +90,19 @@ namespace PenScan.ViewModels.Scan
         {
             if (ScanItems != null)
             {
+                if (_savebutton)
+                {
+                    var id = db().InsertScanitemsAsync(ScanItems);
+                    if (id != null)
+                    {
+                        await App.Current.MainPage.Navigation.PopAsync();
+                    }
+                }
+                else
+                {
+                    await App.Current.MainPage.Navigation.PopAsync();
+                }
 
-                var id = db().InsertScanitemsAsync(ScanItems);
             }
             else
             {
