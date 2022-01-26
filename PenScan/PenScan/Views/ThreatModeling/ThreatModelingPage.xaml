@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PenScan.Views.ThreatModeling.ThreatModelingPage">
+    
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label Text="Threat Modeling" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Label  Text="List of Added Files" FontSize="Title"/>
+            <ListView x:Name="FileList" ItemsSource="{Binding FileList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label  Grid.Column="0" FontSize="Medium" Text="{Binding FileName}"/>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid ColumnDefinitions="1*, 1*" VerticalOptions="EndAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Entry  FontSize="Medium" IsEnabled="False" Text="{Binding SelectedFile.FileName} " Grid.Row="0" Grid.Column="0"/>
+                <Button  x:Name="SelectFileButton" Text="Select File" Command="{Binding SelectFileCommand}" Grid.Row="0" Grid.Column="1"/>
+                <Button  x:Name="AddFileButton" Text="Add File" Command="{Binding AddFileCommand}" Grid.Row="0" Grid.Column="2"/>
+            </Grid>
+            <Button x:Name="SaveButton" Text="Save" Command="{Binding SaveCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

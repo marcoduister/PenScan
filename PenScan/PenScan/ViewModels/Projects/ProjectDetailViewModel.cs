@@ -1,7 +1,9 @@
 ﻿using PenScan.Models;
 using PenScan.Services;
+using PenScan.Views.Exploitations;
 using PenScan.Views.ProjectPhases;
 using PenScan.Views.Scan;
+using PenScan.Views.ThreatModeling;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -122,19 +124,21 @@ namespace PenScan.ViewModels
                     App.Current.MainPage.Navigation.PushAsync(new Views.Scan.Scanner(Project.Id));
                     break;
                 case 3:
-                    // code block
+                    App.Current.MainPage.Navigation.PushAsync(new ThreatModelingPage(Project.Id, Id));
                     break;
                 case 4:
-                    // code block
+                    App.Current.MainPage.Navigation.PushAsync(new Exploitation(Project.Id, Id));
                     break;
                 case 5:
-                    // code block
+                    App.Current.MainPage.Navigation.PushAsync(new PostExploitation(Project.Id, Id));
                     break;
                 case 6:
-                    // code block
+                     App.Current.MainPage.DisplayAlert("onder constructie", "sorry maar deze pagina is nog onder constructie", "OK");
+                    // hier moet een reporting pagina komen hoef niet functioneel werkend tezijn maar wel het gezicht.
                     break;
                 case 7:
-                    // code block
+                    App.Current.MainPage.DisplayAlert("onder constructie", "sorry maar deze pagina is nog onder constructie", "OK");
+                    // hier moet een Re-testing pagina komen hoef niet functioneel werkend tezijn maar wel het gezicht.
                     break;
                 default:
                     // code block
