@@ -15,12 +15,10 @@ namespace PenScan.Views.Projects
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProjectOverview : ContentPage
     {
-        ProjectOverviewViewModel viewModel;
         public ProjectOverview()
         {
             InitializeComponent();
             BindingContext = new ProjectOverviewViewModel();
-            
         }
         protected override void OnAppearing()
         {

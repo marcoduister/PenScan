@@ -1,4 +1,5 @@
-﻿using PenScan.Views.ProjectPhases;
+﻿using PenScan.Views.Exploitations;
+using PenScan.Views.ProjectPhases;
 using PenScan.Views.Scan;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace PenScan.Views.Access
 
         private void scanner_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage.Navigation.PushAsync(new PreEngagementPage(1));
+
         }
     }
 }

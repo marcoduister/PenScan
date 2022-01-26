@@ -4,6 +4,7 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,8 +24,96 @@ namespace PenScan.Data
             _sqlconnection.CreateTableAsync<Contract>();
             _sqlconnection.CreateTableAsync<Project>();
             _sqlconnection.CreateTableAsync<ScanItem>();
+            _sqlconnection.CreateTableAsync<Models.File>();
         }
 
+        #region FileManagment
+
+        public ObservableCollection<File> GetAllThreatModelingFiles(int ProjectId, int projectfaseId)
+        {
+            var list = new List<File>();
+
+            try
+            {
+                list = _sqlconnection.Table<File>().Where(x => x.ProjectId == ProjectId && x.projectfaseId == projectfaseId).ToListAsync().Result;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return new ObservableCollection<File>(list);
+        }
+
+        public ObservableCollection<File> GetAllExploitationFiles(int ProjectId, int projectfaseId)
+        {
+            var list = new List<File>();
+
+            try
+            {
+                list = _sqlconnection.Table<File>().Where(x => x.ProjectId == ProjectId && x.projectfaseId == projectfaseId).ToListAsync().Result;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return new ObservableCollection<File>(list);
+        }
+        public ObservableCollection<File> GetAllPostExploitationFiles(int ProjectId, int projectfaseId)
+        {
+            var list = new List<File>();
+            
+            try
+            {
+                list = _sqlconnection.Table<File>().Where(x=>x.ProjectId == ProjectId && x.projectfaseId == projectfaseId).ToListAsync().Result;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return new ObservableCollection<File>(list); 
+        }
+
+
+
+
+        public Task<int> AddThreatModelingFiles(ObservableCollection<File> fileList)
+        {
+            try
+            {
+                returns = _sqlconnection.InsertAllAsync(fileList);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return returns;
+        }
+        public Task<int> AddExploitationFiles(ObservableCollection<File> fileList)
+        {
+            try
+            {
+                returns = _sqlconnection.InsertAllAsync(fileList);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return returns;
+        }
+        public Task<int> AddPostExploitationFiles(ObservableCollection<File> fileList)
+        {
+            try
+            {
+                returns = _sqlconnection.InsertAllAsync(fileList);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return returns;
+        }
+
+        #endregion
 
         #region Access
 
@@ -77,6 +166,7 @@ namespace PenScan.Data
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 return null;
             }
             
@@ -91,12 +181,10 @@ namespace PenScan.Data
             }
             catch (Exception ex)
             {
-
-                throw;
+                Debug.WriteLine(ex);
             }
             return returns;
         }
-
         #endregion
 
         #region scan
@@ -110,7 +198,7 @@ namespace PenScan.Data
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex);
             }
             return list;
         }
@@ -127,8 +215,7 @@ namespace PenScan.Data
             }
             catch (Exception ex)
             {
-
-                throw;
+                Debug.WriteLine(ex);
             }
             return returns;
         }
@@ -145,14 +232,22 @@ namespace PenScan.Data
             }
             catch (Exception ex)
             {
-
-                throw;
+                Debug.WriteLine(ex);
             }
             return list;
         }
         public Project GetProjectbyIdAsync(int Id)
         {
-            return _sqlconnection.Table<Project>().FirstAsync(e => e.Id == Id).Result;
+            try
+            {
+                return _sqlconnection.Table<Project>().FirstAsync(e => e.Id == Id).Result;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                return null;
+            }
+            
         }
 
 
@@ -165,8 +260,7 @@ namespace PenScan.Data
             }
             catch (Exception ex )
             {
-
-                throw;
+                Debug.WriteLine(ex);
             }
             return returns;
         }
@@ -179,8 +273,7 @@ namespace PenScan.Data
             }
             catch (Exception ex)
             {
-
-                throw;
+                Debug.WriteLine(ex);
             }
             return returns;
         }
@@ -202,7 +295,8 @@ namespace PenScan.Data
             }
             catch (Exception ex )
             {
-                throw;
+                Debug.WriteLine(ex);
+                return null;
             }
         }
 
