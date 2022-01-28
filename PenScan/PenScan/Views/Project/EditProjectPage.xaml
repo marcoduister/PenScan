@@ -4,13 +4,13 @@
              x:Class="PenScan.Views.Projects.EditProjectPage">
     <ContentPage.Content>
         <StackLayout Padding="30">
-            <Label x:Name="NameLabel" Text="project name"/>
+            <Label x:Name="NameLabel" Text="Project name"/>
             <Entry x:Name="NameEntry" Text="{Binding ProjectName}"/>
             <Label x:Name="DescriptionLabel" Text="Description"/>
             <Entry x:Name="DescriptionEntry" Text="{Binding Description}" Placeholder="Beschrijving"/>
             <Label x:Name="CompanyLabel" Text="Bedrijf"/>
             <Entry x:Name="CompanyEntry" Text="{Binding CompanyName}" Placeholder="Beschrijving"/>
-            <Button x:Name="EditProjectButton" Text="Project edit" Command="{Binding EditCommand}"/>
+            <Button x:Name="EditProjectButton" Text="Project aanpassen" Command="{Binding EditCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

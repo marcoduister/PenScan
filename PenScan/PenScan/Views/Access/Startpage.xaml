@@ -11,7 +11,6 @@
 
                 <Button x:Name="LoginreRedirectButton" Text="Login" Clicked="LoginreRedirectButton_Clicked"   />
                 <Button x:Name="RegisterRedirectButton" Text="Register" Clicked="RegisterRedirectButton_Clicked" />
-                <Button x:Name="scanner" Text="scanner" Clicked="scanner_Clicked" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -135,11 +135,9 @@ namespace PenScan.ViewModels
                     break;
                 case 6:
                      App.Current.MainPage.Navigation.PushAsync(new ReportingPage());
-                    // hier moet een reporting pagina komen hoef niet functioneel werkend tezijn maar wel het gezicht.
                     break;
                 case 7:
-                    App.Current.MainPage.DisplayAlert("onder constructie", "sorry maar deze pagina is nog onder constructie", "OK");
-                    // hier moet een Re-testing pagina komen hoef niet functioneel werkend tezijn maar wel het gezicht.
+                    App.Current.MainPage.Navigation.PushAsync(new ReportingPage());
                     break;
                 default:
                     // code block
