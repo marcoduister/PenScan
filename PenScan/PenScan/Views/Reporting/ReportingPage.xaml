@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PenScan.Views.Reporting.ReportingPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <StackLayout>
+                <Label Text="Gebaseerd op"/>
+                <ListView x:Name="BasedOnFileListView" ItemsSource="{Binding BasedOnFileList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label  Grid.Column="0" FontSize="Medium" Text="{Binding .}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Gebruikte tools"/>
+                <ListView x:Name="ToolsFileListView" ItemsSource="{Binding ToolsFileList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label  Grid.Column="0" FontSize="Medium" Text="{Binding .}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Documentatie uitvoering"/>
+                <ListView x:Name="AchievedFileListView" ItemsSource="{Binding AchievedFileList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label  Grid.Column="0" FontSize="Medium" Text="{Binding .}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout>
+                <Button x:Name="SendButton" Text="Send / Print Report" Clicked="SendButton_Clicked"/>
+                <Button x:Name="ReturnToStepsButton" Text="Terug naar stappen" Clicked="ReturnToStepsButton_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

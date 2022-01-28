@@ -2,6 +2,7 @@
 using PenScan.Services;
 using PenScan.Views.Exploitations;
 using PenScan.Views.ProjectPhases;
+using PenScan.Views.Reporting;
 using PenScan.Views.Scan;
 using PenScan.Views.ThreatModeling;
 using System;
@@ -133,7 +134,7 @@ namespace PenScan.ViewModels
                     App.Current.MainPage.Navigation.PushAsync(new PostExploitation(Project.Id, Id));
                     break;
                 case 6:
-                     App.Current.MainPage.DisplayAlert("onder constructie", "sorry maar deze pagina is nog onder constructie", "OK");
+                     App.Current.MainPage.Navigation.PushAsync(new ReportingPage());
                     // hier moet een reporting pagina komen hoef niet functioneel werkend tezijn maar wel het gezicht.
                     break;
                 case 7:
